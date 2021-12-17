@@ -18,7 +18,7 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public void addStatus(Status status) {
+    public void save(Status status) {
         statusDao.save(status);
     }
 
@@ -30,6 +30,16 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public List listStatuses() {
         return statusDao.findAll();
+    }
+
+    @Override
+    public int getDiscountById(int id) {
+        return statusDao.getDiscountById(id);
+    }
+
+    @Override
+    public Status findById(int id) {
+        return statusDao.findById(id).get();
     }
 
     @Override

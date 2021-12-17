@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit status</title>
+</head>
+<body>
+    <div th:insert="mainPage/mainPage :: navBar"></div>
+    <form action="#" th:action="@{/status/edit}" th:object="${status}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <br/>
+        <label for="discount">Discount</label>
+        <input type="number" th:field ="*{discount}" id="discount" placeholder="Discount">
+        <br/>
+        <input type="submit" value="Update status">
+    </form>
+    <button onclick="location.href='/status'">back</button>
+</body>
+</html>

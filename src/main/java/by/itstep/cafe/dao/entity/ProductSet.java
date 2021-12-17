@@ -11,11 +11,13 @@ public class ProductSet {
     private ProductSetId id;
 
     @ManyToOne
-    @MapsId("ProductId")
+    @MapsId("productId")
+    @JoinColumn(name = "productId", referencedColumnName = "id")
     private Product product;
 
     @ManyToOne
     @MapsId("orderId")
+    @JoinColumn(name = "orderId", referencedColumnName = "id")
     private Order order;
 
     @Column(name = "quantity")

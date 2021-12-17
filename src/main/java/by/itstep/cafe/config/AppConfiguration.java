@@ -39,7 +39,7 @@ public class AppConfiguration {
     @Value("${connection.username}")
     private String userName;
 
-    @Value("&{connection.password")
+    @Value("${connection.password}")
     private String password;
 
     @Bean

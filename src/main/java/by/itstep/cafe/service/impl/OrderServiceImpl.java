@@ -37,6 +37,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> findAllOrdersByUserName(String name) {
+        return orderDao.findAllByClient_UserName(name);
+    }
+
+    @Override
+    public List<Order> findAllOrderByDate(String date) {
+        return orderDao.findAllByCreateDate(date);
+    }
+
+    @Override
     public void removeOrder(int id) {
         orderDao.deleteById(id);
     }

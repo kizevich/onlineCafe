@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderDao extends JpaRepository<Order, Integer> {
 
     List<Order> findAllByCreateDate(String date);
+
+    List<Order> findAllByClient_UserName(String name);
 }

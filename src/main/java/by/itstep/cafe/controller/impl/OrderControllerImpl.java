@@ -31,6 +31,11 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
+    public List findAllOrdersByUserName(String name) {
+        return orderService.findAllOrdersByUserName(name);
+    }
+
+    @Override
     public Optional<Order> getOrder(int id) {
         return orderService.getOrder(id);
     }

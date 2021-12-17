@@ -26,7 +26,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "roleId")
     private Role role;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "client")
     private List<Order> orders;
 
     public User() {

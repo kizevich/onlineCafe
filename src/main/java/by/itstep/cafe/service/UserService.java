@@ -7,17 +7,15 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User createUser(User user) throws Exception;
+    User save(User user) throws Exception;
 
     void deleteUser(int id);
 
-    List listUsers();
+    List<User> listUsers();
 
-    Optional<User> findUserByName(String name);
+    User findUserByName(String name) throws Exception;
 
-    List findAllOrdersByUserName(String name);
+    User findById(int id);
 
-    List findAllOrderByDate(String date);
-
-    int getDiscountByUserName(String name);
+    int getDiscountByUserName(String name) throws Exception;
 }

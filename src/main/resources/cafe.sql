@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 -- Table `cafe`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cafe`.`user` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `userName` VARCHAR(45) NOT NULL UNIQUE,
   `phone` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,

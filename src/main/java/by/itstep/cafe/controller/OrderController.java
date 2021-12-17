@@ -11,6 +11,8 @@ public interface OrderController {
 
     void removeOrder(int id);
 
+    public List findAllOrdersByUserName(String name);
+
     List<Order> listOrders();
 
     Optional<Order> getOrder(int id);

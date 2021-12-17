@@ -8,10 +8,8 @@ import java.util.Objects;
 @Embeddable
 public class ProductSetId implements Serializable {
 
-    @Column(name = "productId")
     private int productId;
 
-    @Column(name = "orderId")
     private int orderId;
 
     public ProductSetId() {

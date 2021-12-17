@@ -13,8 +13,8 @@ public class Order {
     private int id;
     @Column(name = "price")
     private int fullPrice;
-    @OneToMany(mappedBy = "product")
-    private List<Product> products;
+    @OneToMany(mappedBy = "order")
+    private List<ProductSet> productSets;
     @ManyToOne
     @JoinColumn(name = "clientId")
     private User client;
@@ -24,19 +24,19 @@ public class Order {
     private String createDate;
     @Column(name = "deliveryTime")
     private String deliveryTime;
-    @Column(name = "message")
-    private String message; // TODO comment
+    @Column(name = "comment")
+    private String comment;
 
-    public Order(int id, List<Product> products, User client, String createDate, String deliveryTime,
-                 String message) {
+    public Order(int id, List<ProductSet> productSets, User client, String createDate, String deliveryTime,
+                 String comment) {
         this.id = id;
-        this.products = products;
+        this.productSets = productSets;
         this.client = client;
         this.createDate = createDate;
         this.deliveryTime = deliveryTime;
-        this.message = message;
-        for (Product product : products) {
-            fullPrice += product.getPrice();
+        this.comment = comment;
+        for (ProductSet productSet : productSets) {
+            fullPrice += productSet.getProduct().getPrice();
         }
     }
 
@@ -59,12 +59,12 @@ public class Order {
         this.fullPrice = fullPrice;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<ProductSet> getProductSets() {
+        return productSets;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductSets(List<ProductSet> productSets) {
+        this.productSets = productSets;
     }
 
     public User getClient() {
@@ -99,11 +99,11 @@ public class Order {
         this.deliveryTime = deliveryTime;
     }
 
-    public String getMessage() {
-        return message;
+    public String getComment() {
+        return comment;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

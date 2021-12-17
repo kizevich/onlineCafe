@@ -9,7 +9,7 @@ public class MainControllerImpl {
 
     @RequestMapping({"/", ""})
     public String index(Model model) {
-        return "add";
+        return "mainPage/mainPage";
     }
 
 }

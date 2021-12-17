@@ -8,16 +8,12 @@ public interface UserController {
 
     User createUser(User user) throws Exception;
 
-    void deleteUser(int id);
+    String deleteUser(int id);
 
-    List listUsers();
+    List<User> listUsers();
 
-    User findUserByName(String name);
+    User findUserByName(String name) throws Exception;
 
-    List findAllOrdersByUserName(String name);
-
-    List findAllOrderByDate(String date);
-
-    int getDiscountByUserName(String name);
+    int getDiscountByUserName(String name) throws Exception;
 
 }

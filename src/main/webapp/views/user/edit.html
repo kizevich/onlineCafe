@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit user</title>
+</head>
+<body>
+    <div th:insert="mainPage/mainPage :: navBar"></div>
+    <form action="#" th:action="@{/user/edit}" th:object="${user}" method="post">
+        <label for="id">ID</label>
+        <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+        <br/>
+        <label for="userName">User Name</label>
+        <input type="text" th:field="*{userName}" id="userName" placeholder="User Name">
+        <br/>
+        <label for="dateOfBirth">Date of birth</label>
+        <input type="date" th:field ="*{dateOfBirth}" id="dateOfBirth" placeholder="Date of Birth">
+        <br/>
+        <label for="phone">Phone</label>
+        <input type="text" th:field="*{phone}" id="phone" placeholder="Phone">
+        <br/>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password" placeholder="Password">
+        <br/>
+        <label class="form-label">Role : </label>
+        <select th:field="*{role.id}">
+            <option th:each="role : ${roles}"
+                    th:text="${role.getName()}"
+                    th:value="${role.id}"
+            >
+            </option>
+        </select>
+        <br/>
+        <label class="form-label">Status : </label>
+        <select th:field="*{status.id}">
+            <option th:each="status : ${statuses}"
+                    th:text="${status.getName()}"
+                    th:value="${status.id}"
+            >
+            </option>
+        </select>
+        <br/>
+        <input type="submit" value="Update user">
+    </form>
+    <button onclick="location.href='/user'">back</button>
+</body>
+</html>

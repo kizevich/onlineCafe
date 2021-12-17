@@ -7,11 +7,15 @@ import java.util.Optional;
 
 public interface StatusService {
 
-    void addStatus(Status status);
+    void save(Status status);
 
     void removeStatus(int id);
 
     List listStatuses();
+
+    int getDiscountById(int id);
+
+    Status findById(int id);
 
     Status getStatus(String name);
 

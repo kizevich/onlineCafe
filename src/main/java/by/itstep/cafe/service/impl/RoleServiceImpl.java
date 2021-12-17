@@ -6,6 +6,7 @@ import by.itstep.cafe.service.RoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -18,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public Role addRole(Role role) {
+    public Role save(Role role) {
         return roleDao.save(role);
     }
 
@@ -35,5 +36,13 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getRole(String name) {
         return roleDao.findByName(name);
+    }
+
+    @Override
+    public Role findById(int id) {
+        if(roleDao.findById(id).isPresent()){
+            return roleDao.findById(id).get();
+        }
+        return null;
     }
 }

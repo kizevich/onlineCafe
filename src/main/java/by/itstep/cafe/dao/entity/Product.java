@@ -18,7 +18,7 @@ public class Product {
     private Type type;
     @Column(name = "description")
     private String description;
-    @Column(name = "imageSrc")
+    @Column(name = "image_src")
     private String imageSrc;
 
     public Product(int id, String name, int price, Type type, String description, String imageSrc) {

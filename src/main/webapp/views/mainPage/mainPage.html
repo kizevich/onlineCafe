@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>main</title>
 </head>
 <body>
-    <button href="/user">user</button>
-
+    <div th:fragment="navBar">
+        <button onclick="location.href='/user'">user</button>
+        <button onclick="location.href='/role'">role</button>
+        <button onclick="location.href='/status'">status</button>
+    </div>
 </body>
 </html>

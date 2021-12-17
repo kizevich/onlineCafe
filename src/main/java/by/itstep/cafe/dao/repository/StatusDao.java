@@ -14,4 +14,6 @@ public interface StatusDao extends JpaRepository<Status, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM status WHERE status.discount > :discount ORDER BY status.discount LIMIT 1")
     Optional<Status> findNextStatus(int discount);
 
+    int getDiscountById(int id);
+
 }

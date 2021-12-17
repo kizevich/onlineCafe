@@ -4,6 +4,7 @@ import by.itstep.cafe.dao.entity.Order;
 import by.itstep.cafe.dao.repository.UserDao;
 import by.itstep.cafe.dao.entity.User;
 import by.itstep.cafe.service.OrderService;
+import by.itstep.cafe.service.StatusService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
     private OrderService orderService;
+    private StatusService statusService;
 
 
     public UserServiceImpl(UserDao userDao, OrderService orderService) {
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService {
 // java docs
 
     @Override
-    public User createUser(User user) throws Exception {
+    public User save(User user) throws Exception {
         isValid(user);
         return userDao.save(user);
     }
@@ -43,38 +45,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findUserByName(String name) {
-        return userDao.findUserByUserName(name);
-    }
+    public User findUserByName(String name) throws Exception {
+        Optional<User> optionalUser = userDao.findUserByUserName(name);
 
-    // orderService
-    @Override
-    public List<Order> findAllOrdersByUserName(String name) {
-        return findUserByName(name).getOrders();
-    }
+        if (optionalUser.isPresent()){
+            User user = optionalUser.get();
 
-    @Override
-    public List<Order> findAllOrderByDate(String date) {
-        return orderService.getOrdersByDate(date);
+            return user;
+        } else {
+            throw new Exception("user is not exist");
+        }
     }
 
     @Override
-    public int getDiscountByUserName(String name) {
-        return findUserByName(name).getStatus().getDiscount();
+    public User findById(int id) {
+
+        return userDao.findById(id).get();
+    }
+
+
+    @Override
+    public int getDiscountByUserName(String name) throws Exception {
+
+        User user = findUserByName(name);
+
+        return statusService.getDiscountById(user.getStatus().getId());
     }
 //TODO make void, create new exception class
-    private boolean isValid(User user) throws Exception {
-        boolean valid = false;
-        if (isPhone(user.getPhone())) {
-            valid = true;
-        } else {
+    private void isValid(User user) throws Exception {
+        if (!isPhone(user.getPhone())) {
             throw new Exception("not correct phone number");
         }
-        if (isLogin(user.getUserName())) {
-            valid = true;
-        } else {
+        if (!isLogin(user.getUserName())) {
             throw new Exception("not correct userName");
         }
-        return valid;
     }
 }

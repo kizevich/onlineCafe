@@ -13,7 +13,11 @@ public interface OrderService {
 
     List<Order> listOrders();
 
+    public List<Order> findAllOrdersByUserName(String name);
+
+    public List<Order> findAllOrderByDate(String date);
+
     Optional<Order> getOrder(int id);
 
-    List <Order> getOrdersByDate(String date);
+    List<Order> getOrdersByDate(String date);
 }
