@@ -5,7 +5,7 @@
     <title>main_user</title>
 </head>
 <body>
-    <div th:insert="mainPage/mainPage :: navBar"></div>
+    <div th:insert="navigateBar/bar :: navBar"></div>
     <div th:switch="${users}">
         <h2 th:case="null">No users found!</h2>
         <div th:case="*">

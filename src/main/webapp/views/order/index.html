@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>order</title>
+</head>
+<body>
+<div th:insert="navigateBar/bar :: navBar"></div>
+<div th:switch="${orders}">
+    <h2 th:case="null">No Orders found!</h2>
+    <div th:case="*">
+        <h2>Orders</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Client</th>
+                <th>State</th>
+                <th>CreateDate</th>
+                <th>Price</th>
+                <th>DeliveryTime</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.client.userName}"></td>
+                <td th:text="${order.state}"></td>
+                <td th:text="${order.createDate}"></td>
+                <td th:text="${order.price}"></td>
+                <td th:text="${order.deliveryTime}"></td>
+                <td th:text="${order.comment}"></td>
+                <td><form method="GET" th:action="@{order/edit/{id}(id=${order.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">Edit</button>
+                </form></td>
+                <td><form method="GET" th:action="@{order/delete/{id}(id=${order.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">Delete</button>
+                </form></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button onclick="location.href='/order/new'">create order</button>
+</div>
+<button onclick="location.href='/'">back</button>
+
+</body>
+</html>

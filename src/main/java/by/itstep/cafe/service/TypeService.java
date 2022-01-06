@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface TypeService {
 
-    Type addType(Type type);
+    Type save(Type type);
 
     void removeType(int id);
 
     List listTypes();
 
     Type getType(String name);
+
+    Type findById(int id);
 }

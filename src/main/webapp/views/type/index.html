@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Roles</title>
+    <title>type</title>
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<div th:switch="${roles}">
-    <h2 th:case="null">No roles found!</h2>
+<div th:switch="${types}">
+    <h2 th:case="null">No types found!</h2>
     <div th:case="*">
-        <h2>Roles</h2>
+        <h2>Types</h2>
         <table>
             <thead>
             <tr>
@@ -18,16 +18,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="role : ${roles}">
-                <td th:text="${role.id}"></td>
-                <td th:text="${role.name}"></td>
+            <tr th:each="type : ${types}">
+                <td th:text="${type.id}"></td>
+                <td th:text="${type.name}"></td>
                 <td>
-                    <form method="GET" th:action="@{role/edit/{id}(id=${role.id})}">
+                    <form method="GET" th:action="@{type/edit/{id}(id=${type.id})}">
                         <button type="submit" name="submit" value="value" class="link-button">Edit</button>
                     </form>
                 </td>
                 <td>
-                    <form method="GET" th:action="@{role/delete/{id}(id=${role.id})}">
+                    <form method="GET" th:action="@{type/delete/{id}(id=${type.id})}">
                         <button type="submit" name="submit" value="value" class="link-button">Delete</button>
                     </form>
                 </td>
@@ -35,8 +35,9 @@
             </tbody>
         </table>
     </div>
-    <button onclick="location.href='/role/new'">create role</button>
+    <button onclick="location.href='/type/new'">create type</button>
 </div>
 <button onclick="location.href='/'">back</button>
+
 </body>
 </html>

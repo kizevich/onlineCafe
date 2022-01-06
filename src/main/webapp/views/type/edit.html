@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>edit role</title>
+    <title>edit type</title>
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<form action="#" th:action="@{/role/edit}" th:object="${role}" method="post">
+<form action="#" th:action="@{/type/edit}" th:object="${type}" method="post">
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
     <br/>
-    <input type="submit" value="Update role">
+    <input type="submit" value="Update type">
 </form>
-<button onclick="location.href='/role'">back</button>
+<button onclick="location.href='/type'">back</button>
 </body>
 </html>

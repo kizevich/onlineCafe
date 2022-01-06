@@ -17,7 +17,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type addType(Type type) {
+    public Type save(Type type) {
        return typeDao.save(type);
     }
 
@@ -34,5 +34,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type getType(String name) {
         return typeDao.findByName(name);
+    }
+
+    @Override
+    public Type findById(int id) {
+
+        return typeDao.findById(id).get();
     }
 }

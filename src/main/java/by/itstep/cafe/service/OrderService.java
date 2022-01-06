@@ -2,12 +2,13 @@ package by.itstep.cafe.service;
 
 import by.itstep.cafe.dao.entity.Order;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 public interface OrderService {
 
-    Order addOrder(Order order);
+    Order save(Order order);
 
     void removeOrder(int id);
 
@@ -15,9 +16,9 @@ public interface OrderService {
 
     public List<Order> findAllOrdersByUserName(String name);
 
-    public List<Order> findAllOrderByDate(String date);
+    public List<Order> findAllOrderByDate(LocalDateTime date);
 
     Optional<Order> getOrder(int id);
 
-    List<Order> getOrdersByDate(String date);
+    List<Order> getOrdersByDate(LocalDateTime date);
 }

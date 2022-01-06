@@ -5,7 +5,7 @@
     <title>edit status</title>
 </head>
 <body>
-    <div th:insert="mainPage/mainPage :: navBar"></div>
+    <div th:insert="navigateBar/bar :: navBar"></div>
     <form action="#" th:action="@{/status/edit}" th:object="${status}" method="post">
         <label for="id">ID</label>
         <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">

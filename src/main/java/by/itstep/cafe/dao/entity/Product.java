@@ -1,6 +1,7 @@
 package by.itstep.cafe.dao.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "product")
@@ -12,7 +13,7 @@ public class Product {
     @Column(name = "name")
     private String name;
     @Column(name = "price")
-    private int price;
+    private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "typeId")
     private Type type;
@@ -21,7 +22,7 @@ public class Product {
     @Column(name = "image_src")
     private String imageSrc;
 
-    public Product(int id, String name, int price, Type type, String description, String imageSrc) {
+    public Product(int id, String name, BigDecimal price, Type type, String description, String imageSrc) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -49,11 +50,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

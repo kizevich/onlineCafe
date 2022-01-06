@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit product</title>
+</head>
+<body>
+<div th:insert="navigateBar/bar :: navBar"></div>
+<form action="#" th:action="@{/product/edit}" th:object="${product}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <br/>
+    <label for="price">Price</label>
+    <input type="number" min="1" step="any" th:field="*{price}" id="price" placeholder="Price">
+    <br/>
+    <label class="form-label">Type : </label>
+    <select th:field="*{type.id}">
+        <option th:each="type : ${types}"
+                th:text="${type.getName()}"
+                th:value="${type.id}"
+        >
+        </option>
+    </select>
+    <br/>
+    <input type="submit" value="Update product">
+</form>
+<button onclick="location.href='/product'">back</button>
+</body>
+</html>

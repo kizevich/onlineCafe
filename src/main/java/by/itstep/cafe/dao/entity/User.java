@@ -20,14 +20,12 @@ public class User {
     private String password;
     @Column(name = "dateOfBirth")
     private String dateOfBirth;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "statusId")
     private Status status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
     private Role role;
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders;
 
     public User() {
     }
@@ -40,7 +38,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.status = status;
         this.role = role;
-        this.orders = new ArrayList<>();
     }
 
     public int getId() {
@@ -99,17 +96,17 @@ public class User {
         this.role = role;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
-        return userName + "\n" + password + "\n" + phone + "\n" + status + "\n" + role;
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", status=" + status +
+                ", role=" + role +
+                '}';
     }
 
     @Override
@@ -122,12 +119,11 @@ public class User {
                 Objects.equals(phone, user.phone) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(status, user.status) &&
-                Objects.equals(role, user.role) &&
-                Objects.equals(orders, user.orders);
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, phone, password, status, role, orders);
+        return Objects.hash(id, userName, phone, password, status, role);
     }
 }

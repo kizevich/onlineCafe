@@ -5,7 +5,7 @@
     <title>status</title>
 </head>
 <body>
-    <div th:insert="mainPage/mainPage :: navBar"></div>
+    <div th:insert="navigateBar/bar :: navBar"></div>
     <div th:switch="${statuses}">
         <h2 th:case="null">No statuses found!</h2>
         <div th:case="*">

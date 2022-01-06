@@ -72,10 +72,10 @@ CREATE TABLE IF NOT EXISTS `cafe`.`order` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `clientId` BIGINT NOT NULL,
   `state` VARCHAR(45) NOT NULL,
-  `crateDate` DATETIME NOT NULL,
-  `price` INT NOT NULL,
-  `deliveryTime` TIME NOT NULL,
-  `message` VARCHAR(45),
+  `createDate` DATETIME NOT NULL,
+  `price` DECIMAL NOT NULL,
+  `deliveryTime` TIME,
+  `comment` VARCHAR(45),
   PRIMARY KEY (`id`),
   CONSTRAINT `client_id`
     FOREIGN KEY (`id`)
@@ -101,10 +101,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cafe`.`product` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL UNIQUE,
-  `price` INT NOT NULL,
+  `price` DECIMAL NOT NULL,
   `typeId` BIGINT NOT NULL,
   `description` VARCHAR(45) NOT NULL,
-  `image_src` VARCHAR(45) NOT NULL,
+  `image_src` VARCHAR(45),
   PRIMARY KEY (`id`),
   CONSTRAINT `product_type`
     FOREIGN KEY (`id`)

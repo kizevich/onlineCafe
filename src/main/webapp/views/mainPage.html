@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>mainPage</title>
+</head>
+<body>
+<div th:insert="navigateBar/bar :: navBar"></div>
+<button onclick="location.href='/user/loginPage'">login</button>
+<!--<form method="POST" th:action="@{menu/{id}(id=${user.id})}">-->
+<!--    <button type="submit" name="submit" value="value" class="link-button">Menu</button>-->
+<!--</form>-->
+<div th:text="${user.userName}"></div>
+<button onclick="location.href='/order/new'">Create Order</button>
+
+</body>
+</html>

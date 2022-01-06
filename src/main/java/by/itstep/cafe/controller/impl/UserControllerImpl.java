@@ -50,6 +50,21 @@ public class UserControllerImpl implements UserController {
         return "redirect:/user";
     }
 
+    @GetMapping("/loginPage")
+    public String loginPage(Model model){
+        model.addAttribute("user", new User());
+        return "user/loginPage";
+    }
+
+    @GetMapping("/login")
+    public String login(User user, Model model) throws Exception {
+        User oldUser = userService.findUserByName(user.getUserName());
+        if (oldUser.getPassword().equals(user.getPassword())){
+            model.addAttribute("user", oldUser);
+        }
+        return "mainPage";
+    }
+
     @GetMapping("delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);

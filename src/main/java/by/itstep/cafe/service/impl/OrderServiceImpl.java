@@ -7,6 +7,8 @@ import by.itstep.cafe.service.OrderService;
 import by.itstep.cafe.service.StatusService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,17 +24,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order addOrder(Order order) {
-        User client = order.getClient();
-        int discount = client.getStatus().getDiscount();
-        // TODO big decimal
-        order.setFullPrice((int) (order.getFullPrice() - order.getFullPrice() * 0.01 * discount));
-        if (statusService.findNextStatus(client.getStatus().getDiscount()).isPresent()) {
-            client.setStatus(statusService.findNextStatus(client.getStatus().getDiscount()).get());
-        }
-        if (client.getDateOfBirth().equals(order.getCreateDate())) {
-            order.setFullPrice((int) (order.getFullPrice() - order.getFullPrice() * 0.9));
-        }
+    public Order save(Order order) {
+//        User client = order.getClient();
+//        BigDecimal discount = BigDecimal.valueOf(client.getStatus().getDiscount());
+//        order.setFullPrice(order.getFullPrice().subtract((order.getFullPrice().multiply(discount)).multiply(BigDecimal.valueOf(0.01))));
+//        if (statusService.findNextStatus(client.getStatus().getDiscount()).isPresent()) {
+//            client.setStatus(statusService.findNextStatus(client.getStatus().getDiscount()).get());
+//        }
+//        if (client.getDateOfBirth().equals(order.getCreateDate())) {
+//            order.setFullPrice((order.getFullPrice().subtract(order.getFullPrice().multiply(BigDecimal.valueOf(0.9)))));
+//        }
         return orderDao.save(order);
     }
 
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllOrderByDate(String date) {
+    public List<Order> findAllOrderByDate(LocalDateTime date) {
         return orderDao.findAllByCreateDate(date);
     }
 
@@ -62,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrdersByDate(String date) {
+    public List<Order> getOrdersByDate(LocalDateTime date) {
         return orderDao.findAllByCreateDate(date);
     }
 }
