@@ -25,7 +25,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {
         "by.itstep.cafe.dao.repository"
 })
-public class AppConfiguration {
+public class DataBaseConfig {
 
     @Value("${connection.driver_class}")
     private String driverClass;
