@@ -10,14 +10,14 @@ public class ProductSetId implements Serializable {
 
     private int productId;
 
-    private int orderId;
+    private int cartId;
 
     public ProductSetId() {
     }
 
-    public ProductSetId(int productId, int orderId) {
+    public ProductSetId(int productId, int cartId) {
         this.productId = productId;
-        this.orderId = orderId;
+        this.cartId = cartId;
     }
 
     public int getProductId() {
@@ -29,18 +29,18 @@ public class ProductSetId implements Serializable {
     }
 
     public int getOrderId() {
-        return orderId;
+        return cartId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrderId(int cartId) {
+        this.cartId = cartId;
     }
 
     @Override
     public String toString() {
         return "ProductSetId{" +
                 "productId=" + productId +
-                ", orderId=" + orderId +
+                ", cartId=" + cartId +
                 '}';
     }
 
@@ -50,11 +50,11 @@ public class ProductSetId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         ProductSetId that = (ProductSetId) o;
         return productId == that.productId &&
-                orderId == that.orderId;
+                cartId == that.cartId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, orderId);
+        return Objects.hash(productId, cartId);
     }
 }

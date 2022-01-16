@@ -16,8 +16,8 @@ public class ProductSet {
     private Product product;
 
     @ManyToOne
-    @MapsId("orderId")
-    @JoinColumn(name = "orderId", referencedColumnName = "id")
+    @MapsId("cartId")
+    @JoinColumn(name = "cartId", referencedColumnName = "id")
     private Cart cart;
 
     @Column(name = "quantity")
@@ -60,7 +60,7 @@ public class ProductSet {
         return "ProductSet{" +
                 "id=" + id +
                 ", product=" + product +
-                ", order=" + cart +
+                ", cart=" + cart +
                 ", amount=" + amount +
                 '}';
     }

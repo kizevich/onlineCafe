@@ -118,18 +118,18 @@ ENGINE = InnoDB;
 -- Table `cafe`.`productSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cafe`.`productSet` (
-  `orderId` BIGINT NOT NULL,
+  `cartId` BIGINT NOT NULL,
   `productId` BIGINT NOT NULL,
   `quantity` INT NULL,
-  INDEX `orderId_idx` (`orderId` ASC) VISIBLE,
-  PRIMARY KEY (`orderId`, `productId`),
-  CONSTRAINT `orderId`
-    FOREIGN KEY (`orderId`)
+  INDEX `orderId_idx` (`cartId` ASC) VISIBLE,
+  PRIMARY KEY (`cartId`, `productId`),
+  CONSTRAINT `cartId`
+    FOREIGN KEY (`cartId`)
     REFERENCES `cafe`.`cart` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `productId`
-    FOREIGN KEY (`orderId`)
+    FOREIGN KEY (`cartId`)
     REFERENCES `cafe`.`product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
