@@ -1,19 +1,12 @@
 package by.itstep.cafe.controller.impl;
 
-import by.itstep.cafe.dao.entity.Order;
-import by.itstep.cafe.dao.entity.User;
 import by.itstep.cafe.service.OrderService;
 import by.itstep.cafe.service.ProductService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping({"/", ""})
@@ -36,7 +29,7 @@ public class MainControllerImpl {
 
     @GetMapping("menu/")
     public String showMenu(Model model){
-        model.addAttribute(productService.listProducts());
+        model.addAttribute("products", productService.listProducts());
 
         return "mainPage/menu";
     }

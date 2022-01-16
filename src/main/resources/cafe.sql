@@ -66,19 +66,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `cafe`.`order`
+-- Table `cafe`.`cart`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cafe`.`order` (
+CREATE TABLE IF NOT EXISTS `cafe`.`cart` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `clientId` BIGINT NOT NULL,
-  `state` VARCHAR(45) NOT NULL,
-  `createDate` DATETIME NOT NULL,
+  `state` VARCHAR(45),
+  `createDate` DATETIME,
   `price` DECIMAL NOT NULL,
-  `deliveryTime` TIME,
+  `deliveryTime` DATETIME,
   `comment` VARCHAR(45),
   PRIMARY KEY (`id`),
   CONSTRAINT `client_id`
-    FOREIGN KEY (`id`)
+    FOREIGN KEY (`clientId`)
     REFERENCES `cafe`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `cafe`.`productSet` (
   PRIMARY KEY (`orderId`, `productId`),
   CONSTRAINT `orderId`
     FOREIGN KEY (`orderId`)
-    REFERENCES `cafe`.`order` (`id`)
+    REFERENCES `cafe`.`cart` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `productId`

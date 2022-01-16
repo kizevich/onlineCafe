@@ -18,7 +18,7 @@ public class ProductSet {
     @ManyToOne
     @MapsId("orderId")
     @JoinColumn(name = "orderId", referencedColumnName = "id")
-    private Order order;
+    private Cart cart;
 
     @Column(name = "quantity")
     private int amount;
@@ -39,12 +39,12 @@ public class ProductSet {
         this.product = product;
     }
 
-    public Order getOrder() {
-        return order;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public int getAmount() {
@@ -60,7 +60,7 @@ public class ProductSet {
         return "ProductSet{" +
                 "id=" + id +
                 ", product=" + product +
-                ", order=" + order +
+                ", order=" + cart +
                 ", amount=" + amount +
                 '}';
     }
@@ -73,11 +73,11 @@ public class ProductSet {
         return amount == that.amount &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(product, that.product) &&
-                Objects.equals(order, that.order);
+                Objects.equals(cart, that.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, product, order, amount);
+        return Objects.hash(id, product, cart, amount);
     }
 }

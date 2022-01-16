@@ -1,14 +1,13 @@
 package by.itstep.cafe.controller.impl;
 
 import by.itstep.cafe.controller.OrderController;
-import by.itstep.cafe.dao.entity.Order;
+import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.entity.User;
 import by.itstep.cafe.service.OrderService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping({"/order"})
+@RequestMapping({"/cart"})
 public class OrderControllerImpl implements OrderController {
 
     private OrderService orderService;
@@ -32,26 +31,25 @@ public class OrderControllerImpl implements OrderController {
     @GetMapping("/new")
     public String newOrder(Model model) {
         model.addAttribute("user", new User());
-        return "order/new";
+        return "cart/new";
     }
 
     @PostMapping("/createOrder")
     public String menu(User user, Model model) throws Exception {
-        Order order = new Order();
-        order.setClient(userService.findUserByName(user.getUserName()));
-        order.setFullPrice(BigDecimal.ZERO);
-        order.setCreateDate(LocalDateTime.now());
-        order.setState("new");
-        System.out.println(order.toString());
-        orderService.save(order);
-        model.addAttribute(order);
+        Cart cart = new Cart();
+        cart.setClient(userService.findUserByName(user.getUserName()));
+        cart.setFullPrice(BigDecimal.ZERO);
+        cart.setCreateDate(LocalDateTime.now());
+        cart.setState("new");
+        System.out.println(cart.toString());
+        orderService.save(cart);
 
-        return "redirect:/mainPage/menu";
+        return "redirect:/menu/";
     }
 
     @Override
-    public Order addOrder(Order order) {
-        return orderService.save(order);
+    public Cart addOrder(Cart cart) {
+        return orderService.save(cart);
     }
 
     @Override
@@ -60,7 +58,7 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
-    public List<Order> listOrders() {
+    public List<Cart> listOrders() {
         return orderService.listOrders();
     }
 
@@ -70,7 +68,7 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
-    public Optional<Order> getOrder(int id) {
+    public Optional<Cart> getOrder(int id) {
         return orderService.getOrder(id);
     }
 }

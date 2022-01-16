@@ -1,19 +1,19 @@
 package by.itstep.cafe.controller;
 
-import by.itstep.cafe.dao.entity.Order;
+import by.itstep.cafe.dao.entity.Cart;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface OrderController {
 
-    Order addOrder(Order order);
+    Cart addOrder(Cart cart);
 
     void removeOrder(int id);
 
     public List findAllOrdersByUserName(String name);
 
-    List<Order> listOrders();
+    List<Cart> listOrders();
 
-    Optional<Order> getOrder(int id);
+    Optional<Cart> getOrder(int id);
 }

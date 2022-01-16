@@ -6,16 +6,10 @@
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<form th:method="POST" th:action="@{/order/createOrder}" th:object="${user}">
-    <label for="userName">Enter client name: </label>
-    <input type="text" th:field="*{userName}" id="userName"/>
-    <br/>
-    <input type="submit" value="Create order"/>
-</form>
 <div th:switch="${products}">
     <h2 th:case="null">No products found!</h2>
     <div th:case="*">
-        <h2>Products</h2>
+        <h2>Menu</h2>
         <table>
             <thead>
             <tr>
@@ -31,11 +25,8 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.type.name}"></td>
-                <td><form method="GET" th:action="@{product/edit/{id}(id=${product.id})}">
-                    <button type="submit" name="submit" value="value" class="link-button">Edit</button>
-                </form></td>
-                <td><form method="GET" th:action="@{product/delete/{id}(id=${product.id})}">
-                    <button type="submit" name="submit" value="value" class="link-button">Delete</button>
+                <td><form method="POST" th:action="@{productSet/{id}(id=${product.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">add</button>
                 </form></td>
             </tr>
             </tbody>

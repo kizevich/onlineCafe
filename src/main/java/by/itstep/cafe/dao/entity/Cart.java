@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "cart")
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "price")
-    private BigDecimal fullPrice = BigDecimal.valueOf(0);
-    @OneToMany(mappedBy = "order")
+    private BigDecimal fullPrice;
+    @OneToMany(mappedBy = "cart")
     private List<ProductSet> productSets;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "clientId")
@@ -34,20 +34,21 @@ public class Order {
     @Column(name = "comment")
     private String comment;
 
-    public Order(int id, List<ProductSet> productSets, User client, LocalDateTime createDate, LocalDateTime deliveryTime,
-                 String comment) {
+    public Cart(int id, List<ProductSet> productSets, User client, LocalDateTime createDate, LocalDateTime deliveryTime,
+                String comment) {
         this.id = id;
         this.productSets = productSets;
         this.client = client;
         this.createDate = createDate;
         this.deliveryTime = deliveryTime;
         this.comment = comment;
+        this.fullPrice = BigDecimal.valueOf(0);
 //        for (ProductSet productSet : productSets) {
 //            fullPrice += productSet.getProduct().getPrice();
 //        }
     }
 
-    public Order() {
+    public Cart() {
     }
 
     public int getId() {
@@ -132,15 +133,15 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id &&
-                Objects.equals(fullPrice, order.fullPrice) &&
-                Objects.equals(productSets, order.productSets) &&
-                Objects.equals(client, order.client) &&
-                Objects.equals(state, order.state) &&
-                Objects.equals(createDate, order.createDate) &&
-                Objects.equals(deliveryTime, order.deliveryTime) &&
-                Objects.equals(comment, order.comment);
+        Cart cart = (Cart) o;
+        return id == cart.id &&
+                Objects.equals(fullPrice, cart.fullPrice) &&
+                Objects.equals(productSets, cart.productSets) &&
+                Objects.equals(client, cart.client) &&
+                Objects.equals(state, cart.state) &&
+                Objects.equals(createDate, cart.createDate) &&
+                Objects.equals(deliveryTime, cart.deliveryTime) &&
+                Objects.equals(comment, cart.comment);
     }
 
     @Override

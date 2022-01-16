@@ -1,6 +1,6 @@
 package by.itstep.cafe.service;
 
-import by.itstep.cafe.dao.entity.Order;
+import by.itstep.cafe.dao.entity.Cart;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,17 +8,19 @@ import java.util.Optional;
 
 public interface OrderService {
 
-    Order save(Order order);
+    Cart save(Cart cart);
 
     void removeOrder(int id);
 
-    List<Order> listOrders();
+    List<Cart> listOrders();
 
-    public List<Order> findAllOrdersByUserName(String name);
+    public List<Cart> findAllOrdersByUserName(String name);
 
-    public List<Order> findAllOrderByDate(LocalDateTime date);
+    public List<Cart> findAllOrderByDate(LocalDateTime date);
 
-    Optional<Order> getOrder(int id);
+    Optional<Cart> getOrder(int id);
 
-    List<Order> getOrdersByDate(LocalDateTime date);
+    List<Cart> getOrdersByDate(LocalDateTime date);
+
+    Cart getByState(String state) throws Exception;
 }

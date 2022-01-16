@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>new order</title>
+    <title>new cart</title>
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<form th:method="POST" th:action="@{/order/createOrder}" th:object="${user}">
+<form th:method="POST" th:action="@{/cart/createOrder}" th:object="${user}">
     <label for="userName">Enter client name: </label>
     <input type="text" th:field="*{userName}" id="userName"/>
     <br/>
-    <input type="submit" value="Create order"/>
+    <input type="submit" value="Create cart"/>
 </form>
 </body>
 </html>

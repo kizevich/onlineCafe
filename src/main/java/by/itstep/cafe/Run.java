@@ -1,22 +1,14 @@
 package by.itstep.cafe;
 
-import by.itstep.cafe.controller.UserController;
-import by.itstep.cafe.controller.impl.UserControllerImpl;
-import by.itstep.cafe.dao.entity.Order;
-import by.itstep.cafe.dao.entity.User;
+import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.repository.OrderDao;
-import by.itstep.cafe.dao.repository.UserDao;
-import by.itstep.cafe.service.OrderService;
-import by.itstep.cafe.service.UserService;
-import by.itstep.cafe.service.impl.OrderServiceImpl;
-import by.itstep.cafe.service.impl.UserServiceImpl;
 
 public class Run {
     public static void main(String[] args) {
 
         OrderDao orderDao = null;
 
-        Order order = new Order();
-        orderDao.save(order);
+        Cart cart = new Cart();
+        orderDao.save(cart);
     }
 }
