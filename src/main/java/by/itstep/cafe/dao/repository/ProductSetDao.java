@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductSetDao extends JpaRepository<ProductSet, Integer> {
 
-    ProductSet findByOrderId(int id);
+    ProductSet findByCartId(int id);
 }

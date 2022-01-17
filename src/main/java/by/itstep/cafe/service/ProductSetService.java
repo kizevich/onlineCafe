@@ -8,5 +8,5 @@ public interface ProductSetService {
 
     void removeProductSet(int id);
 
-    ProductSet findByOrderId(int id);
+    ProductSet findByCartId(int id);
 }

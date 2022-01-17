@@ -26,7 +26,7 @@ public class ProductSetServiceImpl implements ProductSetService {
     }
 
     @Override
-    public ProductSet findByOrderId(int id) {
-        return productSetDao.findByOrderId(id);
+    public ProductSet findByCartId(int id) {
+        return productSetDao.findByCartId(id);
     }
 }
