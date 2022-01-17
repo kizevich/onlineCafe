@@ -14,5 +14,5 @@ public interface ProductService {
 
     Product getProduct(String name);
 
-    Product findById(int id);
+    Product findById(int id) throws Exception;
 }

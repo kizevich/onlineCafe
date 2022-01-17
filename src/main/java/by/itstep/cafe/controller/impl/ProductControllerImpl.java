@@ -54,7 +54,7 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @GetMapping("edit/{id}")
-    public String updateProductForm(@PathVariable("id") int id, Model model) {
+    public String updateProductForm(@PathVariable("id") int id, Model model) throws Exception {
         model.addAttribute("types", typeService.listTypes());
         Product product = productService.findById(id);
         model.addAttribute("product", product);

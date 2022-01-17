@@ -6,6 +6,7 @@ import by.itstep.cafe.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -38,8 +39,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findById(int id) {
+    public Product findById(int id) throws Exception {
 
-        return productDao.findById(id).get();
+        Optional<Product> optProduct = productDao.findById(id);
+
+        if(optProduct.isPresent()){
+            return optProduct.get();
+        } else {
+            throw new Exception();
+        }
     }
 }
