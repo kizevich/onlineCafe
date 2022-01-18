@@ -18,7 +18,7 @@ public interface OrderService {
 
     public List<Cart> findAllOrderByDate(LocalDateTime date);
 
-    Optional<Cart> getOrder(int id);
+    Cart getOrder(int id) throws Exception;
 
     List<Cart> getOrdersByDate(LocalDateTime date);
 

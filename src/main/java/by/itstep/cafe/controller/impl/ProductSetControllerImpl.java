@@ -1,6 +1,7 @@
 package by.itstep.cafe.controller.impl;
 
 import by.itstep.cafe.controller.ProductSetController;
+import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.entity.Product;
 import by.itstep.cafe.dao.entity.ProductSet;
 import by.itstep.cafe.service.OrderService;
@@ -8,10 +9,7 @@ import by.itstep.cafe.service.ProductService;
 import by.itstep.cafe.service.ProductSetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/productSet")
@@ -27,22 +25,28 @@ public class ProductSetControllerImpl implements ProductSetController {
         this.productService = productService;
     }
 
-    @PostMapping("/save")
-    public String save(@PathVariable("id") int id, Model model) throws Exception {
-        ProductSet productSet = new ProductSet();
-        productSet.setAmount(1);
+    @PostMapping("/save/")
+    public String save(Product product, Cart cart, ProductSet productSet, Model model) throws Exception {
+
+        System.out.println(cart.getId());
+
         productSet.setCart(orderService.getByState("new"));
-        productSet.setProduct(productService.findById(id));
+        productSet.setProduct(product);
 
         productSetService.save(productSet);
+
+        model.addAttribute("cart", cart);
 
         return "redirect:/menu/";
     }
 
-    @GetMapping("/new/{id}")
-    public String createProductSet(@PathVariable("id") int id, Model model) throws Exception {
-        Product product = productService.findById(id);
-        model.addAttribute("product", product);
-        return "redirect:/productSet/save";
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id, Cart cart, Model model) {
+        productSetService.removeProductSet(id);
+
+        model.addAttribute("cart", cart);
+
+        return "redirect:/menu/";
     }
+
 }

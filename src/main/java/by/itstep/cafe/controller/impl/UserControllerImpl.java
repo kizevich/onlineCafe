@@ -42,7 +42,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @PostMapping()
-    public String create(User user, @RequestParam("id") int id, Model model) throws Exception {
+    public String create(User user, @RequestParam("id") int id) throws Exception {
         user.setRole(roleService.findById(id));
         user.setStatus(statusService.findById(1));
         userService.save(user);
@@ -65,14 +65,14 @@ public class UserControllerImpl implements UserController {
         return "mainPage";
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
 
         return "redirect:/user";
     }
 
-    @GetMapping("edit/{id}")
+    @GetMapping("/edit/{id}")
     public String updateUserForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("roles", roleService.listRoles());
         model.addAttribute("statuses", statusService.listStatuses());

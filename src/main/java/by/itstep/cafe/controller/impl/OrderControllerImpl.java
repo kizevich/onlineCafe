@@ -41,8 +41,10 @@ public class OrderControllerImpl implements OrderController {
         cart.setFullPrice(BigDecimal.ZERO);
         cart.setCreateDate(LocalDateTime.now());
         cart.setState("new");
-        System.out.println(cart.toString());
         orderService.save(cart);
+        model.addAttribute("cart", cart);
+
+        System.out.println("menu:" + cart.getId());
 
         return "redirect:/menu/";
     }
@@ -65,10 +67,5 @@ public class OrderControllerImpl implements OrderController {
     @Override
     public List findAllOrdersByUserName(String name) {
         return orderService.findAllOrdersByUserName(name);
-    }
-
-    @Override
-    public Optional<Cart> getOrder(int id) {
-        return orderService.getOrder(id);
     }
 }

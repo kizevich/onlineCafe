@@ -56,8 +56,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Optional<Cart> getOrder(int id) {
-        return orderDao.findById(id);
+    public Cart getOrder(int id) throws Exception {
+        Optional<Cart> optionalOrder = orderDao.findById(id);
+
+        if (optionalOrder.isPresent()){
+            Cart cart = optionalOrder.get();
+
+            return cart;
+
+        } else {
+            throw new Exception("order is not exist");
+        }
     }
 
     @Override

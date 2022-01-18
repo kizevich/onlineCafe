@@ -15,5 +15,4 @@ public interface OrderController {
 
     List<Cart> listOrders();
 
-    Optional<Cart> getOrder(int id);
 }

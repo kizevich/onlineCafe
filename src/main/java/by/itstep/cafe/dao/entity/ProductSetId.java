@@ -28,11 +28,11 @@ public class ProductSetId implements Serializable {
         this.productId = productId;
     }
 
-    public int getOrderId() {
+    public int getCartId() {
         return cartId;
     }
 
-    public void setOrderId(int cartId) {
+    public void setCartId(int cartId) {
         this.cartId = cartId;
     }
 

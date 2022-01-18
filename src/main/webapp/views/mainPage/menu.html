@@ -7,13 +7,12 @@
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
 <div th:switch="${products}">
-    <h2 th:case="null">No products found!</h2>
+    <h2 th:case="null">No products found</h2>
     <div th:case="*">
         <h2>Menu</h2>
         <table>
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Type</th>
@@ -21,12 +20,34 @@
             </thead>
             <tbody>
             <tr th:each="product : ${products}">
-                <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.type.name}"></td>
-                <td><form method="POST" th:action="@{productSet/{id}(id=${product.id})}">
+                <td><form method="GET" th:action="@{productSet/new/{id}(id=${product.id})}">
                     <button type="submit" name="submit" value="value" class="link-button">add</button>
+                </form></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:switch="${productSets}">
+    <h2 th:case="null">Empty cart</h2>
+    <div th:case="*">
+        <h2>Products in cart</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="productSet : ${productSets}">
+                <td th:text="${productSet.id}"></td>
+                <td th:text="${productSet.amount}"></td>
+                <td><form method="POST" th:action="@{productSet/delete/{id}(id=${productSet.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">delete</button>
                 </form></td>
             </tr>
             </tbody>
