@@ -31,7 +31,7 @@ public class ProductSetControllerImpl implements ProductSetController {
         System.out.println(cart.getId());
 
         productSet.setCart(orderService.getByState("new"));
-        productSet.setProduct(product);
+        productSet.setProduct(productService.findById(product.getId()));
 
         productSetService.save(productSet);
 

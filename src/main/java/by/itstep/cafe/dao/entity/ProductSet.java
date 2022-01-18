@@ -8,7 +8,7 @@ import java.util.Objects;
 public class ProductSet {
 
     @EmbeddedId
-    private ProductSetId id;
+    private ProductSetId id = new ProductSetId();
 
     @ManyToOne
     @MapsId("productId")
