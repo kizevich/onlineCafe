@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -42,7 +43,7 @@ public class OrderControllerImpl implements OrderController {
         cart.setCreateDate(LocalDateTime.now());
         cart.setState("new");
         orderService.save(cart);
-        model.addAttribute("cart", cart);
+        model.addAttribute("cartId", cart.getId());
 
         System.out.println("menu:" + cart.getId());
 

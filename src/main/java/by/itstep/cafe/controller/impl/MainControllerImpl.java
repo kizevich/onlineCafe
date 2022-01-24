@@ -9,9 +9,7 @@ import by.itstep.cafe.service.ProductSetService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping({"/", ""})
@@ -35,13 +33,14 @@ public class MainControllerImpl {
         return "mainPage";
     }
 
-    @GetMapping("menu/")
-    public String showMenu(Cart cart, Model model){
+    @PostMapping("menu/")
+    public String showMenu(@RequestParam("cartId") String cartId, Cart cart, Model model){
         model.addAttribute("products", productService.listProducts());
         model.addAttribute("cart", cart);
         model.addAttribute("productSets", productSetService.findByCartId(cart.getId()));
 
         System.out.println("showMenu:" + cart.getId());
+        System.out.println(cartId);
 
         return "mainPage/menu";
     }

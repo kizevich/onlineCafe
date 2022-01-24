@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<form th:method="GET" th:action="@{/user/login}" th:object="${user}">
+<form th:method="POST" th:action="@{/user/login}" th:object="${user}">
     <label for="userName">Enter name: </label>
     <input type="text" th:field="*{userName}" id="userName"/>
     <label for="password">Enter password: </label>
