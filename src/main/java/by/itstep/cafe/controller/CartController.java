@@ -1,11 +1,12 @@
 package by.itstep.cafe.controller;
 
 import by.itstep.cafe.dao.entity.Cart;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface OrderController {
+public interface CartController {
 
     Cart addOrder(Cart cart);
 
@@ -15,4 +16,5 @@ public interface OrderController {
 
     List<Cart> listOrders();
 
+    void confirmCart(String id, Model model) throws Exception;
 }

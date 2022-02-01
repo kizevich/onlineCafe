@@ -59,8 +59,9 @@ public class UserControllerImpl implements UserController {
     @PostMapping("/login")
     public String login(User user, Model model) throws Exception {
         User oldUser = userService.findUserByName(user.getUserName());
-        if (oldUser.getPassword() == user.getPassword()){
+        if (oldUser.getPassword().equals(user.getPassword())){
             model.addAttribute("user", oldUser);
+            model.addAttribute("userId", user.getId());
         } else {
             throw new Exception("Wrong user name or password");
         }

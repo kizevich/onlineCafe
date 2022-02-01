@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public interface OrderService {
+public interface CartService {
 
     Cart save(Cart cart);
 
@@ -23,4 +23,8 @@ public interface OrderService {
     List<Cart> getOrdersByDate(LocalDateTime date);
 
     Cart getByState(String state) throws Exception;
+
+    Cart confirmCart(Cart cart);
+
+    Cart getById(int id) throws Exception;
 }

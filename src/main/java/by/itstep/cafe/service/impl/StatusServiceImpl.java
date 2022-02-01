@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class StatusServiceImpl implements StatusService {
 
-    private StatusDao statusDao;
+    private final StatusDao statusDao;
 
     public StatusServiceImpl(StatusDao statusDao) {
         this.statusDao = statusDao;
@@ -28,7 +28,7 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public List listStatuses() {
+    public List<Status> listStatuses() {
         return statusDao.findAll();
     }
 
@@ -38,17 +38,38 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public Status findById(int id) {
-        return statusDao.findById(id).get();
+    public Status findById(int id) throws Exception {
+        Optional<Status> optionalStatus = statusDao.findById(id);
+
+        if (optionalStatus.isPresent()){
+
+            return optionalStatus.get();
+        } else {
+            throw new Exception("status is not exist");
+        }
     }
 
     @Override
-    public Status getStatus(String name) {
-        return statusDao.findByName(name);
+    public Status getStatus(String name) throws Exception {
+        Optional<Status> optionalStatus = statusDao.findByName(name);
+
+        if (optionalStatus.isPresent()){
+
+            return optionalStatus.get();
+        } else {
+            throw new Exception("status is not exist");
+        }
     }
 
     @Override
-    public Optional<Status> findNextStatus(int discount) {
-        return statusDao.findNextStatus(discount);
+    public Status findNextStatus(int discount) throws Exception {
+        Optional<Status> optionalStatus = statusDao.findNextStatus(discount);
+
+        if (optionalStatus.isPresent()){
+
+            return optionalStatus.get();
+        } else {
+            throw new Exception("status is not exist");
+        }
     }
 }

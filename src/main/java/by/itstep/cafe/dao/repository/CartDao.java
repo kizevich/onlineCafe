@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface OrderDao extends JpaRepository<Cart, Integer> {
+public interface CartDao extends JpaRepository<Cart, Integer> {
 
     List<Cart> findAllByCreateDate(LocalDateTime date);
 

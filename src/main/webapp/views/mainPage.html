@@ -6,14 +6,12 @@
 </head>
 <body>
 <div th:insert="navigateBar/bar :: navBar"></div>
-<a th:href="@{/user/loginPage}">login</a>
+<div th:with="cartId=${cartId}"></div>
+<div th:with="userId=${userId}"></div>
+<button onclick="location.href='/user/loginPage'">login</button>
 <form action="#" th:action="@{/cart/createOrder}" th:object="${user}" method="POST">
     <input type="submit" value="Create Order"/>
 </form>
-
-<div th:with="cartId=${cartId}"></div>
-
-<!--<div th:text="${user.userName}">null</div>-->
 
 </body>
 </html>

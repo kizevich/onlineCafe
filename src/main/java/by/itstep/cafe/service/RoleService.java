@@ -11,10 +11,10 @@ public interface RoleService {
 
     void removeRole(int id);
 
-    List listRoles();
+    List<Role> listRoles();
 
-    Role getRole(String name);
+    Role getRole(String name) throws Exception;
 
-    Role findById(int id);
+    Role findById(int id) throws Exception;
 
 }

@@ -12,7 +12,9 @@ public interface ProductService {
 
     List<Product> listProducts();
 
-    Product getProduct(String name);
+    Product getByName(String name) throws Exception;
 
     Product findById(int id) throws Exception;
+
+    List<Product> findAllById(List<Integer> ids);
 }

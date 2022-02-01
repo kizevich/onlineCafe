@@ -2,7 +2,7 @@ package by.itstep.cafe.service.impl;
 
 import by.itstep.cafe.dao.repository.UserDao;
 import by.itstep.cafe.dao.entity.User;
-import by.itstep.cafe.service.OrderService;
+import by.itstep.cafe.service.CartService;
 import by.itstep.cafe.service.StatusService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Service;
@@ -17,13 +17,12 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserDao userDao;
-    private OrderService orderService;
     private StatusService statusService;
 
 
-    public UserServiceImpl(UserDao userDao, OrderService orderService) {
+    public UserServiceImpl(UserDao userDao, StatusService statusService) {
         this.userDao = userDao;
-        this.orderService = orderService;
+        this.statusService = statusService;
     }
 // java docs
 
@@ -57,16 +56,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(int id) throws Exception {
+        Optional<User> optionalUser = userDao.findById(id);
 
-        return userDao.findById(id).get();
+        if (optionalUser.isPresent()){
+            User user = optionalUser.get();
+
+            return user;
+        } else {
+            throw new Exception("user is not exist");
+        }
     }
 
 
     @Override
-    public int getDiscountByUserName(String name) throws Exception {
-
-        User user = findUserByName(name);
+    public int getDiscountByUserId(int id) throws Exception {
+        User user = findById(id);
 
         return statusService.getDiscountById(user.getStatus().getId());
     }

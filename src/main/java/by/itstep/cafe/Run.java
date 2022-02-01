@@ -1,14 +1,14 @@
 package by.itstep.cafe;
 
 import by.itstep.cafe.dao.entity.Cart;
-import by.itstep.cafe.dao.repository.OrderDao;
+import by.itstep.cafe.dao.repository.CartDao;
 
 public class Run {
     public static void main(String[] args) {
 
-        OrderDao orderDao = null;
+        CartDao cartDao = null;
 
         Cart cart = new Cart();
-        orderDao.save(cart);
+        cartDao.save(cart);
     }
 }

@@ -15,7 +15,7 @@ public interface UserService {
 
     User findUserByName(String name) throws Exception;
 
-    User findById(int id);
+    User findById(int id) throws Exception;
 
-    int getDiscountByUserName(String name) throws Exception;
+    int getDiscountByUserId(int id) throws Exception;
 }

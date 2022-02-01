@@ -11,13 +11,13 @@ public interface StatusService {
 
     void removeStatus(int id);
 
-    List listStatuses();
+    List<Status> listStatuses();
 
     int getDiscountById(int id);
 
-    Status findById(int id);
+    Status findById(int id) throws Exception;
 
-    Status getStatus(String name);
+    Status getStatus(String name) throws Exception;
 
-    Optional<Status> findNextStatus(int discount);
+    Status findNextStatus(int discount) throws Exception;
 }

@@ -36,8 +36,12 @@ public class StatusControllerImpl implements StatusController {
     }
 
     @PostMapping()
-    public String create(Status status, Model model) throws Exception {
-        statusService.save(status);
+    public String create(Status status, Model model) {
+        try {
+            statusService.save(status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "redirect:/status";
     }
@@ -51,7 +55,12 @@ public class StatusControllerImpl implements StatusController {
 
     @GetMapping("edit/{id}")
     public String updateStatusForm(@PathVariable("id") int id, Model model) {
-        Status status = statusService.findById(id);
+        Status status = null;
+        try {
+            status = statusService.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         model.addAttribute("status", status);
 
         return "status/edit";

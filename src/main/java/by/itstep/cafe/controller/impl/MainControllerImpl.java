@@ -3,7 +3,7 @@ package by.itstep.cafe.controller.impl;
 import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.entity.Product;
 import by.itstep.cafe.dao.entity.ProductSet;
-import by.itstep.cafe.service.OrderService;
+import by.itstep.cafe.service.CartService;
 import by.itstep.cafe.service.ProductService;
 import by.itstep.cafe.service.ProductSetService;
 import by.itstep.cafe.service.UserService;
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 public class MainControllerImpl {
 
     private ProductService productService;
-    private OrderService orderService;
+    private CartService cartService;
     private UserService userService;
     private ProductSetService productSetService;
 
-    public MainControllerImpl(ProductService productService, OrderService orderService,
+    public MainControllerImpl(ProductService productService, CartService cartService,
                               ProductSetService productSetService, UserService userService) {
         this.userService = userService;
-        this.orderService = orderService;
+        this.cartService = cartService;
         this.productService = productService;
         this.productSetService = productSetService;
     }

@@ -1,14 +1,18 @@
 package by.itstep.cafe.service.impl;
 
 import by.itstep.cafe.dao.entity.ProductSet;
+import by.itstep.cafe.dao.entity.Role;
 import by.itstep.cafe.dao.repository.ProductSetDao;
 import by.itstep.cafe.service.ProductSetService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductSetServiceImpl implements ProductSetService {
 
-    private ProductSetDao productSetDao;
+    private final ProductSetDao productSetDao;
 
     public ProductSetServiceImpl(ProductSetDao productSetDao) {
         this.productSetDao = productSetDao;
@@ -21,12 +25,11 @@ public class ProductSetServiceImpl implements ProductSetService {
 
     @Override
     public void removeProductSet(int id) {
-
         productSetDao.deleteById(id);
     }
 
     @Override
-    public ProductSet findByCartId(int id) {
+    public List<ProductSet> findByCartId(int id) {
         return productSetDao.findByCartId(id);
     }
 }

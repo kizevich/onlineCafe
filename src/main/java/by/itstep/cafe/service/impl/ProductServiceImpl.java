@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private ProductDao productDao;
+    private final ProductDao productDao;
 
     public ProductServiceImpl (ProductDao productDao) {
         this.productDao = productDao;
@@ -34,8 +34,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(String name) {
-        return productDao.findByName(name);
+    public Product getByName(String name) throws Exception {
+        Optional<Product> optionalProduct = productDao.findByName(name);
+
+        if (optionalProduct.isPresent()){
+
+            return optionalProduct.get();
+        } else {
+            throw new Exception("status is not exist");
+        }
     }
 
     @Override
@@ -48,5 +55,10 @@ public class ProductServiceImpl implements ProductService {
         } else {
             throw new Exception();
         }
+    }
+
+    @Override
+    public List<Product> findAllById(List<Integer> ids) {
+        return productDao.findAllById(ids);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface StatusDao extends JpaRepository<Status, Integer> {
 
-    Status findByName(String name);
+    Optional<Status> findByName(String name);
 
     @Query(nativeQuery = true, value = "SELECT * FROM status WHERE status.discount > :discount ORDER BY status.discount LIMIT 1")
     Optional<Status> findNextStatus(int discount);

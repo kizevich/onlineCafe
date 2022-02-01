@@ -4,7 +4,7 @@ import by.itstep.cafe.controller.ProductSetController;
 import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.entity.Product;
 import by.itstep.cafe.dao.entity.ProductSet;
-import by.itstep.cafe.service.OrderService;
+import by.itstep.cafe.service.CartService;
 import by.itstep.cafe.service.ProductService;
 import by.itstep.cafe.service.ProductSetService;
 import org.springframework.stereotype.Controller;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class ProductSetControllerImpl implements ProductSetController {
 
     private ProductSetService productSetService;
-    private OrderService orderService;
+    private CartService cartService;
     private ProductService productService;
 
-    public ProductSetControllerImpl(ProductSetService productSetService, OrderService orderService, ProductService productService) {
+    public ProductSetControllerImpl(ProductSetService productSetService, CartService cartService, ProductService productService) {
         this.productSetService = productSetService;
-        this.orderService = orderService;
+        this.cartService = cartService;
         this.productService = productService;
     }
 
@@ -30,7 +30,7 @@ public class ProductSetControllerImpl implements ProductSetController {
 
         System.out.println(cart.getId());
 
-        productSet.setCart(orderService.getByState("new"));
+        productSet.setCart(cartService.getByState("new"));
         productSet.setProduct(productService.findById(product.getId()));
 
         productSetService.save(productSet);

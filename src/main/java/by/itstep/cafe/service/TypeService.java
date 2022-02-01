@@ -10,9 +10,9 @@ public interface TypeService {
 
     void removeType(int id);
 
-    List listTypes();
+    List<Type> listTypes();
 
-    Type getType(String name);
+    Type getTypeByName(String name) throws Exception;
 
-    Type findById(int id);
+    Type findById(int id) throws Exception;
 }

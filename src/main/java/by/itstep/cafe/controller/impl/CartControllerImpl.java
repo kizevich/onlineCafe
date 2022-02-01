@@ -1,9 +1,9 @@
 package by.itstep.cafe.controller.impl;
 
-import by.itstep.cafe.controller.OrderController;
+import by.itstep.cafe.controller.CartController;
 import by.itstep.cafe.dao.entity.Cart;
 import by.itstep.cafe.dao.entity.User;
-import by.itstep.cafe.service.OrderService;
+import by.itstep.cafe.service.CartService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,18 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping({"/cart"})
-public class OrderControllerImpl implements OrderController {
+public class CartControllerImpl implements CartController {
 
-    private OrderService orderService;
+    private CartService cartService;
     private UserService userService;
 
-    public OrderControllerImpl(OrderService orderService, UserService userService) {
+    public CartControllerImpl(CartService cartService, UserService userService) {
         this.userService = userService;
-        this.orderService = orderService;
+        this.cartService = cartService;
     }
 
     @GetMapping("/new")
@@ -36,13 +35,13 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @PostMapping("/createOrder")
-    public String menu(User user, Model model) throws Exception {
+    public String menu(@RequestParam("userId") String userId, Model model) throws Exception {
         Cart cart = new Cart();
-        cart.setClient(userService.findUserByName(user.getUserName()));
+        cart.setClient(userService.findById(Integer.parseInt(userId)));
         cart.setFullPrice(BigDecimal.ZERO);
         cart.setCreateDate(LocalDateTime.now());
         cart.setState("new");
-        orderService.save(cart);
+        cartService.save(cart);
         model.addAttribute("cartId", cart.getId());
 
         System.out.println("menu:" + cart.getId());
@@ -50,23 +49,31 @@ public class OrderControllerImpl implements OrderController {
         return "redirect:/menu/";
     }
 
+    @PostMapping("/confirmCart")
+    public void confirmCart(@RequestParam("cartId") String cartId, Model model) throws Exception {
+        Cart cart = cartService.getById(Integer.parseInt(cartId));
+        model.addAttribute("cart", cartService.confirmCart(cart));
+    }
+
     @Override
     public Cart addOrder(Cart cart) {
-        return orderService.save(cart);
+        return cartService.save(cart);
     }
 
     @Override
     public void removeOrder(int id) {
-        orderService.removeOrder(id);
+        cartService.removeOrder(id);
     }
 
     @Override
     public List<Cart> listOrders() {
-        return orderService.listOrders();
+        return cartService.listOrders();
     }
+
+
 
     @Override
     public List findAllOrdersByUserName(String name) {
-        return orderService.findAllOrdersByUserName(name);
+        return cartService.findAllOrdersByUserName(name);
     }
 }

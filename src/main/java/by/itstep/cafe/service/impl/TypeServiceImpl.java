@@ -6,11 +6,12 @@ import by.itstep.cafe.service.TypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TypeServiceImpl implements TypeService {
 
-    private TypeDao typeDao;
+    private final TypeDao typeDao;
 
     public TypeServiceImpl(TypeDao typeDao) {
         this.typeDao = typeDao;
@@ -27,18 +28,33 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public List listTypes() {
+    public List<Type> listTypes() {
         return typeDao.findAll();
     }
 
     @Override
-    public Type getType(String name) {
-        return typeDao.findByName(name);
+    public Type getTypeByName(String name) throws Exception {
+        Optional<Type> optionalType = typeDao.findByName(name);
+
+        if (optionalType.isPresent()){
+            Type type = optionalType.get();
+
+            return type;
+        } else {
+            throw new Exception("type is not exist");
+        }
     }
 
     @Override
-    public Type findById(int id) {
+    public Type findById(int id) throws Exception {
+        Optional<Type> optionalType = typeDao.findById(id);
 
-        return typeDao.findById(id).get();
+        if (optionalType.isPresent()){
+            Type type = optionalType.get();
+
+            return type;
+        } else {
+            throw new Exception("type is not exist");
+        }
     }
 }
