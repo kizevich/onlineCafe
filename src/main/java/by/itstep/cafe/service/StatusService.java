@@ -3,7 +3,6 @@ package by.itstep.cafe.service;
 import by.itstep.cafe.dao.entity.Status;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StatusService {
 

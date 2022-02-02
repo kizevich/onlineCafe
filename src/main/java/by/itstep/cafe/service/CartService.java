@@ -4,7 +4,6 @@ import by.itstep.cafe.dao.entity.Cart;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface CartService {
 
@@ -24,7 +23,7 @@ public interface CartService {
 
     Cart getByState(String state) throws Exception;
 
-    Cart confirmCart(Cart cart);
+    Cart confirmCart(Cart cart) throws Exception;
 
     Cart getById(int id) throws Exception;
 }

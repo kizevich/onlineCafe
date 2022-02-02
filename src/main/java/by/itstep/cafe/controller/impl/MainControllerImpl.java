@@ -34,7 +34,7 @@ public class MainControllerImpl {
     }
 
     @PostMapping("menu/")
-    public String showMenu(@RequestParam("cartId") String cartId, Cart cart, Model model){
+    public String showMenu(@RequestParam("cartId") String cartId, Cart cart, Model model) throws Exception{
         model.addAttribute("products", productService.listProducts());
         model.addAttribute("cart", cart);
         model.addAttribute("productSets", productSetService.findByCartId(cart.getId()));

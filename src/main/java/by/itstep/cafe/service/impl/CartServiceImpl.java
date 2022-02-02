@@ -95,8 +95,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart confirmCart(Cart cart) {
+    public Cart confirmCart(Cart cart) throws Exception {
         cart.setState(CLOSED);
+        calculatePrice(cart);
         return null;
     }
 
@@ -112,24 +113,17 @@ public class CartServiceImpl implements CartService {
         }
     }
 
-    private Cart calculatePrice(Cart cart) throws Exception {
+    private void calculatePrice(Cart cart) throws Exception {
         User client = cart.getClient();
-        BigDecimal fullPrice;
+        BigDecimal fullPrice = BigDecimal.ZERO;
         BigDecimal discount = BigDecimal.valueOf(userService.getDiscountByUserId(client.getId()));
-        List<ProductSet> productSets = productSetService.findByCartId(cart.getId());
-        Map<Integer, Product> productByProductSetIds = getProductByProductSetIds(productSets);
+        List<ProductSet> productSets = productSetService.getProductSetsWithPrice(cart.getId());
 
-        for(Integer productSetId : productByProductSetIds.keySet()) {
-            fullPrice += productByProductSetIds.get(productSetId).getPrice() *
+        for(ProductSet productSet : productSets) {
+            fullPrice = fullPrice.add(productSet.getProduct().getPrice().multiply(BigDecimal.valueOf(productSet.getAmount())));
         }
-        cart.setFullPrice();
-    }
 
-    private Map<Integer, Product> getProductByProductSetIds (List<ProductSet> productSets) {
-        Map<Integer, Product> productByProductSetIds = new HashMap<>();
-        for (ProductSet productSet : productSets) {
-            productByProductSetIds.put(productSet.getId(), productSet.getProduct());
-        }
-        return productByProductSetIds;
+        fullPrice = fullPrice.multiply(discount.divide(BigDecimal.valueOf(100)));
+        cart.setFullPrice(fullPrice);
     }
 }

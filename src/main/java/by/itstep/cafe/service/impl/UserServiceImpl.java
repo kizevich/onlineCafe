@@ -2,7 +2,6 @@ package by.itstep.cafe.service.impl;
 
 import by.itstep.cafe.dao.repository.UserDao;
 import by.itstep.cafe.dao.entity.User;
-import by.itstep.cafe.service.CartService;
 import by.itstep.cafe.service.StatusService;
 import by.itstep.cafe.service.UserService;
 import org.springframework.stereotype.Service;

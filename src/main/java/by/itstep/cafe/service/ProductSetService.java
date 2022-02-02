@@ -11,4 +11,6 @@ public interface ProductSetService {
     void removeProductSet(int id);
 
     List<ProductSet> findByCartId(int id) throws Exception;
+
+    List<ProductSet> getProductSetsWithPrice (int cartId);
 }
